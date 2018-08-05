@@ -7,8 +7,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class SEUkeepingOnline {
-    private String Username = "";
-    private String Password = "";// 密文密码，从http数据包里抓得
+    private String Username = "213161568";
+    private String Password = "T3JhbmdlMDkxMA%3D%3D";
 
     private String BingURL = "https://cn.bing.com/";
     private String SeuURL = "http://w.seu.edu.cn/";
@@ -19,14 +19,18 @@ public class SEUkeepingOnline {
     private OutputStream os = null;
     private InputStream is = null;
 
+    private Date day = null;
+    private SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
     public boolean URL_Connective(String URL) {
         int timeOut = 1000;
-        boolean status=false;
-        // 尝试最多3次以确定是否连接
-        for(int i=3;i>0;i--) {
+        boolean status = false;
+        HttpURLConnection con = null;
+        // 尝试最多5次以确定是否连接
+        for (int i = 5; i > 0; i--) {
             try {
                 URL url = new URL(URL);
-                HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                con = (HttpURLConnection) url.openConnection();
                 con.setRequestMethod("GET");
                 con.setConnectTimeout(timeOut);
                 con.connect();
@@ -34,26 +38,30 @@ public class SEUkeepingOnline {
                 int code = con.getResponseCode();
                 if (code == 200) {
                     status = true;
+                    day = new Date();
                     break;
                 }
+                Thread.sleep(500);
+                day = new Date();
             } catch (Exception e) {
                 status = false;
             }
         }
+        con.disconnect();
         return status;
     }
 
     public void GetCookie() {
-        System.out.println("Get cookie...");
+        System.out.println(df.format(day) + " Get cookie...");
         try {
             URL url = new URL(SeuURL);
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
             cookie = conn.getHeaderField("Set-Cookie");
-            System.out.println("...Done!");
-            System.out.println("Set-Cookie: " + cookie);
+            System.out.println(df.format(day) + " ...Done!");
+            System.out.println(df.format(day) + " Set-Cookie: " + cookie);
             cookie = cookie + "; think_language=zh-Hans-CN" + "; sunriseUsername=" + Username;
-            System.out.println("Modified cookie: " + cookie);
+            System.out.println(df.format(day) + " Modified cookie: " + cookie);
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -61,12 +69,12 @@ public class SEUkeepingOnline {
     }
 
     public int Login() {
-        System.out.println("Try to login...");
+        System.out.println(df.format(day) + " Try to login...");
         // 检测w.seu.edu.cn连接情况
         if (!URL_Connective(SeuURL)) {
-            System.out.println("Connecting w.seu.edu.cn Failed !");
+            System.out.println(df.format(day) + " Connecting w.seu.edu.cn Failed !");
             return 0;
-        } else System.out.println("Connecting w.seu.edu.cn Successfully");
+        } else System.out.println(df.format(day) + " Connecting w.seu.edu.cn Successfully");
         // 获取cookie
         GetCookie();
         try {
@@ -108,8 +116,9 @@ public class SEUkeepingOnline {
                 len = is.read(b);
             }
 //            System.out.println(response);
-            if(response.contains("\\u8ba4\\u8bc1\\u6210\\u529f")) return 0;
-            if(response.contains("\\u8ba4\\u8bc1\\u5931\\u8d25\\uff0c\\u8d26\\u6237\\u6d41\\u91cf\\u8d85\\u914d\\u989d\\u9501\\u5b9a")) return -1;
+            if (response.contains("\\u8ba4\\u8bc1\\u6210\\u529f")) return 0;
+            if (response.contains("\\u8ba4\\u8bc1\\u5931\\u8d25\\uff0c\\u8d26\\u6237\\u6d41\\u91cf\\u8d85\\u914d\\u989d\\u9501\\u5b9a"))
+                return -1;
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -133,19 +142,24 @@ public class SEUkeepingOnline {
 
     public void Run(int timeInterval) {
         while (true) {
-            Date day = new Date();
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             if (!URL_Connective(BingURL)) {
                 System.out.println(df.format(day) + " Internet Connecting Failed !");
-                if(Login()==0) System.out.println("...Login Successfully "+df.format(day));
-                if(Login()==-1){
-                    System.out.println("...Login Failed ! Incorrect Username or Password "+df.format(day));
-                    break;
+                switch (Login()) {
+                    case 0:
+                        System.out.println(df.format(day) + " ...Login Successfully ");
+                        if(URL_Connective(BingURL))
+                            System.out.println(df.format(day) + " Now online!");
+                        break;
+                    case -1:
+                        System.out.println(df.format(day) + " ...Login Failed ! Incorrect Username or Password ");
+                        break;
+                    default:
                 }
             } else System.out.println(df.format(day) + " still keep online");
             // 每隔timeInterval毫秒检查一次网络状况
             try {
                 Thread.sleep(timeInterval);
+                day = new Date();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -155,6 +169,6 @@ public class SEUkeepingOnline {
     public static void main(String[] args) {
         SEUkeepingOnline instance = new SEUkeepingOnline();
 
-        instance.Run(60000);
+        instance.Run(10000);
     }
 }
