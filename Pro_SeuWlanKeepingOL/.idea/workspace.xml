@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8b93684b-e763-4ed9-bded-d2098523363a" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Base64.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UIAboutPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UIBaseFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UIMainPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SEUkeepingOnline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SEUkeepingOnline.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/SEUkeepingOnline.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/SEUkeepingOnline.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,29 +21,66 @@
     <session id="244190606">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="5" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.8" value="3" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="567" />
+          <entry key="dummy" value="10" />
+          <entry key="java" value="1666" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="567" />
+          <entry key="JAVA" value="1666" />
+          <entry key="PLAIN_TEXT" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="2" />
+          <entry key="form" value="4" />
+          <entry key="java" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="2" />
+          <entry key="GUI_DESIGNER_FORM" value="4" />
+          <entry key="JAVA" value="14" />
+        </counts>
+      </usages-collector>
+    </session>
+    <session id="-1210884177">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.11" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="java" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="dummy" value="2" />
+          <entry key="java" value="74" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="74" />
+          <entry key="PLAIN_TEXT" value="2" />
         </counts>
       </usages-collector>
     </session>
@@ -51,27 +90,44 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SEUkeepingOnline.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="327">
-              <caret line="23" column="50" selection-start-line="23" selection-start-column="50" selection-end-line="23" selection-end-column="50" />
+            <state relative-caret-position="580">
+              <caret line="181" lean-forward="true" selection-start-line="181" selection-end-line="181" />
               <folding>
-                <element signature="method#SEUkeepingOnline#0;class#SEUkeepingOnline#0" />
-                <element signature="method#URL_ConnectiveCheck#0;class#SEUkeepingOnline#0" />
-                <element signature="method#GetCookie#0;class#SEUkeepingOnline#0" />
                 <element signature="method#Login#0;class#SEUkeepingOnline#0" />
-                <element signature="method#Run#0;class#SEUkeepingOnline#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Base64.java">
+        <entry file="file://$PROJECT_DIR$/src/UIBaseFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="26" column="21" lean-forward="true" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
+            <state relative-caret-position="-92">
+              <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UIMainPanel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="318">
+              <caret line="34" column="39" selection-start-line="34" selection-start-column="39" selection-end-line="34" selection-end-column="39" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UIAboutPanel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="161">
+              <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -85,6 +141,11 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>KSO_GUI</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
@@ -96,6 +157,21 @@
         <option value="$PROJECT_DIR$/src/Base.java" />
         <option value="$PROJECT_DIR$/src/Base64.java" />
         <option value="$PROJECT_DIR$/src/SEUkeepingOnline.java" />
+        <option value="$PROJECT_DIR$/src/gg.java" />
+        <option value="$PROJECT_DIR$/src/EditorDemo.java" />
+        <option value="$PROJECT_DIR$/src/UIDemo.java" />
+        <option value="$PROJECT_DIR$/src/KSO_GUI.form" />
+        <option value="$PROJECT_DIR$/src/UI.form" />
+        <option value="$PROJECT_DIR$/src/ksoGUI.java" />
+        <option value="$PROJECT_DIR$/src/KSO_GUI.java" />
+        <option value="$PROJECT_DIR$/src/UIDemo.java" />
+        <option value="$PROJECT_DIR$/src/BaseFrame.java" />
+        <option value="$PROJECT_DIR$/src/aUIDemo.java" />
+        <option value="$PROJECT_DIR$/src/UIMain.java" />
+        <option value="$PROJECT_DIR$/src/UIAboutPanel.java" />
+        <option value="$PROJECT_DIR$/src/UIMainFrame.java" />
+        <option value="$PROJECT_DIR$/src/UIBaseFrame.java" />
+        <option value="$PROJECT_DIR$/src/UIMainPanel.java" />
       </list>
     </option>
   </component>
@@ -106,8 +182,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="37" />
-    <option name="y" value="-10" />
+    <option name="x" value="288" />
+    <option name="y" value="-18" />
     <option name="width" value="974" />
     <option name="height" value="756" />
   </component>
@@ -119,9 +195,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -138,12 +213,18 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534476556040" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537268540813" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -157,17 +238,9 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.SEUkeepingOnline">
-    <configuration name="Base64" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Base64" />
-      <module name="Pro_SeuWlanKeepingOL" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MD5" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MD5" />
+  <component name="RunManager">
+    <configuration name="KSO_GUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="KSO_GUI" />
       <module name="Pro_SeuWlanKeepingOL" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
@@ -182,7 +255,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UIBaseFrame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="UIBaseFrame" />
+      <module name="Pro_SeuWlanKeepingOL" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="aUIDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="aUIDemo" />
+      <module name="Pro_SeuWlanKeepingOL" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ksoGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ksoGUI" />
+      <module name="Pro_SeuWlanKeepingOL" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -204,14 +301,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.SEUkeepingOnline" />
-      <item itemvalue="Application.MD5" />
-      <item itemvalue="Application.Base64" />
+      <item itemvalue="Application.aUIDemo" />
+      <item itemvalue="Application.ksoGUI" />
+      <item itemvalue="Application.KSO_GUI" />
+      <item itemvalue="Application.UIBaseFrame" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.UIBaseFrame" />
+        <item itemvalue="Application.KSO_GUI" />
+        <item itemvalue="Application.ksoGUI" />
+        <item itemvalue="Application.aUIDemo" />
         <item itemvalue="Application.SEUkeepingOnline" />
-        <item itemvalue="Application.Base64" />
-        <item itemvalue="Application.MD5" />
       </list>
     </recent_temporary>
   </component>
@@ -226,27 +327,31 @@
       <option name="presentableId" value="Default" />
       <updated>1533209183996</updated>
       <workItem from="1534470422536" duration="5416000" />
+      <workItem from="1534498960118" duration="5681000" />
+      <workItem from="1535109284962" duration="964000" />
+      <workItem from="1535416398826" duration="34000" />
+      <workItem from="1535416889381" duration="60000" />
+      <workItem from="1537149823291" duration="20222000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5416000" />
+    <option name="totallyTimeSpent" value="32377000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14658849" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11727079" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32939914" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.123390555" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -254,8 +359,8 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="10" />
-      <window_info anchor="right" id="Database" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32939914" />
+      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -264,6 +369,7 @@
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
       <window_info anchor="right" id="Maven Projects" order="7" />
+      <window_info anchor="right" id="Database" order="8" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -273,21 +379,125 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/MD5.java">
+    <entry file="file://$PROJECT_DIR$/src/MD5.java" />
+    <entry file="file://$PROJECT_DIR$/src/KSO_UI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="1" selection-start-column="1" selection-end-column="1" />
-          <folding>
-            <element signature="e#1832#1833#0" expanded="true" />
-            <element signature="e#1906#1907#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="207">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Base64.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="26" column="21" lean-forward="true" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
+        <state relative-caret-position="529">
+          <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/KSO_GUI.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/KSO_G.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ksoGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-639">
+          <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#286#287#0" expanded="true" />
+            <element signature="e#314#315#0" expanded="true" />
+            <element signature="e#828#969#0" expanded="true" />
+            <element signature="e#968#969#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/KSO_GUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="764">
+          <caret line="189" column="5" lean-forward="true" selection-start-line="8" selection-start-column="4" selection-end-line="189" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/aUIDemo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="580">
+          <caret line="184" column="27" selection-start-line="184" selection-start-column="27" selection-end-line="184" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2046#2047#0" expanded="true" />
+            <element signature="e#2095#2096#0" expanded="true" />
+            <element signature="e#2156#2157#0" expanded="true" />
+            <element signature="e#2229#2230#0" expanded="true" />
+            <element signature="e#2330#2331#0" expanded="true" />
+            <element signature="e#2379#2380#0" expanded="true" />
+            <element signature="e#3051#3052#0" expanded="true" />
+            <element signature="e#3100#3101#0" expanded="true" />
+            <element signature="e#3759#3760#0" expanded="true" />
+            <element signature="e#3797#3798#0" expanded="true" />
+            <element signature="e#3858#3859#0" expanded="true" />
+            <element signature="e#3891#3892#0" expanded="true" />
+            <element signature="e#3990#3991#0" expanded="true" />
+            <element signature="e#4039#4040#0" expanded="true" />
+            <element signature="e#4100#4101#0" expanded="true" />
+            <element signature="e#4138#4139#0" expanded="true" />
+            <element signature="e#4239#4240#0" expanded="true" />
+            <element signature="e#4288#4289#0" expanded="true" />
+            <element signature="e#4349#4350#0" expanded="true" />
+            <element signature="e#4388#4389#0" expanded="true" />
+            <element signature="e#4491#4492#0" expanded="true" />
+            <element signature="e#4540#4541#0" expanded="true" />
+            <element signature="e#4601#4602#0" expanded="true" />
+            <element signature="e#4641#4642#0" expanded="true" />
+            <element signature="e#4738#4739#0" expanded="true" />
+            <element signature="e#4778#4779#0" expanded="true" />
+            <element signature="e#5048#5049#0" expanded="true" />
+            <element signature="e#5086#5087#0" expanded="true" />
+            <element signature="e#4447#4448#0" expanded="true" />
+            <element signature="e#4475#4476#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UIAboutPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UIBaseFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-92">
+          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Java/jdk1.8.0_172/src.zip!/javax/swing/JButton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="288" column="29" selection-start-line="288" selection-start-column="29" selection-end-line="288" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UIMainPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="34" column="39" selection-start-line="34" selection-start-column="39" selection-end-line="34" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -296,14 +506,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SEUkeepingOnline.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="23" column="50" selection-start-line="23" selection-start-column="50" selection-end-line="23" selection-end-column="50" />
+        <state relative-caret-position="580">
+          <caret line="181" lean-forward="true" selection-start-line="181" selection-end-line="181" />
           <folding>
-            <element signature="method#SEUkeepingOnline#0;class#SEUkeepingOnline#0" />
-            <element signature="method#URL_ConnectiveCheck#0;class#SEUkeepingOnline#0" />
-            <element signature="method#GetCookie#0;class#SEUkeepingOnline#0" />
             <element signature="method#Login#0;class#SEUkeepingOnline#0" />
-            <element signature="method#Run#0;class#SEUkeepingOnline#0" />
           </folding>
         </state>
       </provider>
