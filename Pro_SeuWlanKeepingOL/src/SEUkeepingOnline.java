@@ -12,10 +12,13 @@ public class SEUkeepingOnline {
     private String Password_base64 = "";
     private Base64 base64 = new Base64();
 
-    private String BingURL = "https://cn.bing.com/";
+    protected String BingURL = "https://cn.bing.com/";
     private String SeuURL = "http://w.seu.edu.cn/";
     private String SeuLoginURL = "http://w.seu.edu.cn/index.php/index/login";
     private String cookie = "";
+
+    private boolean isLogined = false;
+    private String version = "1.0.0";
 
     private HttpURLConnection conn = null;
     private OutputStream os = null;
@@ -23,12 +26,22 @@ public class SEUkeepingOnline {
 
     private SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
+    public SEUkeepingOnline() {
+
+    }
+
     public SEUkeepingOnline(String username, String password) {
         Username = username;
         Password = password;
         Password_base64 = base64.Base64Encrypt(Password);
     }
 
+    /*
+     * 用于测试某个URL连接正常
+     * param: String
+     * return: boolean
+     *
+     */
     public boolean URL_ConnectiveCheck(String URL) {
         int timeOut = 1000;
         boolean status = false;
@@ -50,12 +63,21 @@ public class SEUkeepingOnline {
                 Thread.sleep(500);
             } catch (Exception e) {
                 status = false;
+            } finally {
+                if (con != null) {
+                    con.disconnect();
+                }
             }
         }
-        con.disconnect();
         return status;
     }
 
+    /*
+     * 用于得到seu.edu.cn适用于本机的cookie
+     * param: null
+     * return: null
+     *
+     */
     public void GetCookie() {
         System.out.println(df.format(new Date()) + " Geting cookie...");
         try {
@@ -73,6 +95,15 @@ public class SEUkeepingOnline {
         }
     }
 
+    /*
+     * 登录
+     * param: null
+     * return: int
+     *           0: 登陆成功
+     *           -1: 因某种原因登录失败
+     *           -2: 未连接上seu.edu.cn
+     *
+     */
     public int Login() {
         System.out.println(df.format(new Date()) + " Try to login...");
         // 检测w.seu.edu.cn连接情况
@@ -124,9 +155,14 @@ public class SEUkeepingOnline {
                     len = is.read(b);
                 }
 //            System.out.println(response);
-                if (response.contains("\\u8ba4\\u8bc1\\u6210\\u529f")) return 0;
-                if (response.contains("\\u8ba4\\u8bc1\\u5931\\u8d25\\uff0c\\u8d26\\u6237\\u6d41\\u91cf\\u8d85\\u914d\\u989d\\u9501\\u5b9a"))
+                if (response.contains("\\u8ba4\\u8bc1\\u6210\\u529f")) {
+                    isLogined = true;
+                    return 0;
+                }
+                if (response.contains("\\u8ba4\\u8bc1\\u5931\\u8d25\\uff0c\\u8d26\\u6237\\u6d41\\u91cf\\u8d85\\u914d\\u989d\\u9501\\u5b9a")) {
+                    isLogined = false;
                     return -1;
+                }
             } catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -149,6 +185,13 @@ public class SEUkeepingOnline {
         }
     }
 
+    /*
+     * 用于测试某个URL连接正常
+     * param: int
+     *          连接成功后的检查网络周期
+     * return: null
+     *
+     */
     public void Run(int seconds) {
         int interval = seconds;
         while (true) {
@@ -157,8 +200,10 @@ public class SEUkeepingOnline {
                 switch (Login()) {
                     case 0:
                         System.out.println(df.format(new Date()) + " ...Login Successfully ");
-                        if (URL_ConnectiveCheck(BingURL))
+                        if (URL_ConnectiveCheck(BingURL)) {
                             System.out.println(df.format(new Date()) + " Now online!");
+                            interval = seconds;
+                        }
                         break;
                     case -1:
                         System.out.println(df.format(new Date()) + " ...Login Failed ! Incorrect Username or Password ");
@@ -171,7 +216,7 @@ public class SEUkeepingOnline {
                     default:
                 }
             } else System.out.println(df.format(new Date()) + " still keep online");
-            // 每隔timeInterval毫秒检查一次网络状况
+            // 每隔interval秒检查一次网络状况
             try {
                 Thread.sleep(interval * 1000);
             } catch (InterruptedException e) {
@@ -180,9 +225,17 @@ public class SEUkeepingOnline {
         }
     }
 
-    public static void main(String[] args) {
-        SEUkeepingOnline instance = new SEUkeepingOnline("", "");
+    public boolean getisLogined() {
+        return isLogined;
+    }
 
+    public String getVersion() {
+        return version;
+    }
+
+    // 测试用例
+    public static void main(String[] args) {
+        SEUkeepingOnline instance = new SEUkeepingOnline("213161568", "Orange0910");
         instance.Run(15);
     }
 }

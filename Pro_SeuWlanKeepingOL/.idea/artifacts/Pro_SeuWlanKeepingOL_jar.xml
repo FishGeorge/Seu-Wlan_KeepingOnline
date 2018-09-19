@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Pro_SeuWlanKeepingOL:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Pro_SeuWlanKeepingOL_jar</output-path>
+    <root id="archive" name="Pro_SeuWlanKeepingOL.jar">
+      <element id="module-output" name="Pro_SeuWlanKeepingOL" />
+    </root>
+  </artifact>
+</component>
