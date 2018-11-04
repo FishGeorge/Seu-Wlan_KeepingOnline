@@ -7,28 +7,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b93684b-e763-4ed9-bded-d2098523363a" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Pro_SeuWlanKeepingOL_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/FileOperator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UIHelpPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/SEUkeepingOnline.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/SEUkeepingOnline.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIBaseFrame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIBaseFrame$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/Thread_IOfile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/Thread_IOfile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIAboutPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIAboutPanel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIBaseFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIBaseFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$9.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/aUIDemo$AboutAction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/aUIDemo$CopyAction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/aUIDemo$CutAction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/aUIDemo$ExitAction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/aUIDemo$HelpAction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/aUIDemo$NewAction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/aUIDemo$OpenAction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/aUIDemo$PasteAction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/aUIDemo$SaveAction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/aUIDemo.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SEUkeepingOnline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SEUkeepingOnline.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UIAboutPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UIAboutPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UIBaseFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UIBaseFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UIMainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UIMainPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -41,45 +40,48 @@
     <session id="244190606">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="9" />
           <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.11" value="1" />
+          <entry key="project.open.time.10" value="1" />
+          <entry key="project.open.time.11" value="2" />
+          <entry key="project.open.time.15" value="1" />
           <entry key="project.open.time.8" value="3" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="6" />
+          <entry key="project.opened" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="10" />
-          <entry key="java" value="4383" />
+          <entry key="java" value="4997" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="4383" />
+          <entry key="JAVA" value="4997" />
           <entry key="PLAIN_TEXT" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="form" value="4" />
-          <entry key="java" value="17" />
+          <entry key="java" value="21" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="GUI_DESIGNER_FORM" value="4" />
-          <entry key="JAVA" value="17" />
+          <entry key="JAVA" value="21" />
         </counts>
       </usages-collector>
     </session>
     <session id="-1210884177">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.11" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.open.time.20" value="1" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -112,40 +114,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/FileOperator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#231#232#0" expanded="true" />
-                <element signature="e#272#273#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SEUkeepingOnline.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="575">
-              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="26" selection-end-column="78" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#8220#8221#0" expanded="true" />
-                <element signature="e#8252#8253#0" expanded="true" />
-                <element signature="e#8332#8333#0" expanded="true" />
-                <element signature="e#8364#8365#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/UIBaseFrame.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
+            <state relative-caret-position="7130">
+              <caret line="320" selection-start-line="320" selection-end-line="320" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -154,24 +126,21 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/UIMainPanel.java">
+        <entry file="file://$PROJECT_DIR$/src/UIAboutPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="168" column="24" lean-forward="true" selection-start-line="168" selection-start-column="24" selection-end-line="168" selection-end-column="24" />
+            <state relative-caret-position="207">
+              <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UIBaseFrame.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="207">
+              <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="class#1819:2110" />
-                <element signature="class#1445:1736" />
-                <element signature="method#actionPerformed#0;class#2665:3864" />
-                <element signature="class#4387:4739" />
-                <element signature="e#4874#4875#0" expanded="true" />
-                <element signature="e#4938#4939#0" expanded="true" />
-                <element signature="e#5084#5085#0" expanded="true" />
-                <element signature="e#5148#5149#0" expanded="true" />
-                <element signature="method#login#0;class#UIMainPanel#0" />
-                <element signature="method#refresh_isLogined#0;class#UIMainPanel#0" />
-                <element signature="method#isNumeric#0;class#UIMainPanel#0" />
-                <element signature="method#printToUI#0;class#UIMainPanel#0" />
               </folding>
             </state>
           </provider>
@@ -223,6 +192,10 @@
         <option value="$PROJECT_DIR$/src/UIHelpPanel.java" />
         <option value="$PROJECT_DIR$/src/UIBaseFrame.java" />
         <option value="$PROJECT_DIR$/src/UIMainPanel.java" />
+        <option value="$PROJECT_DIR$/src/UIMainPanel.java" />
+        <option value="$PROJECT_DIR$/src/SEUkeepingOnline.java" />
+        <option value="$PROJECT_DIR$/src/UIBaseFrame.java" />
+        <option value="$PROJECT_DIR$/src/UIAboutPanel.java" />
       </list>
     </option>
   </component>
@@ -238,8 +211,9 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="-7" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="95" />
+    <option name="y" value="-16" />
     <option name="width" value="1379" />
     <option name="height" value="1057" />
   </component>
@@ -251,7 +225,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
@@ -266,16 +239,23 @@
               <item name="Pro_SeuWlanKeepingOL" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Pro_SeuWlanKeepingOL" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Pro_SeuWlanKeepingOL" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="UIMainPanel.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537367841269" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541318605972" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -392,18 +372,22 @@
       <workItem from="1535416398826" duration="34000" />
       <workItem from="1535416889381" duration="60000" />
       <workItem from="1537149823291" duration="20222000" />
-      <workItem from="1537342687814" duration="18399000" />
+      <workItem from="1537342687814" duration="19970000" />
+      <workItem from="1540975137247" duration="51000" />
+      <workItem from="1541314958212" duration="3661000" />
+      <workItem from="1541318955736" duration="249000" />
+      <workItem from="1541319276082" duration="146000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50776000" />
+    <option name="totallyTimeSpent" value="56454000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="1379" height="1057" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49876237" visible="true" weight="0.16830933" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49876237" visible="true" weight="0.12313433" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -412,7 +396,7 @@
       <window_info id="Favorites" order="6" sideWeight="0.50123763" side_tool="true" weight="0.16830933" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32939914" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.12459372" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.23283261" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -420,7 +404,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.32936078" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32832617" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -469,68 +453,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UIAboutPanel.java">
+    <entry file="file://$PROJECT_DIR$/src/UIMainPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+        <state relative-caret-position="455">
+          <caret line="235" column="62" selection-start-line="235" selection-start-column="62" selection-end-line="235" selection-end-column="62" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/FileOperator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#231#232#0" expanded="true" />
-            <element signature="e#272#273#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="368">
+          <caret line="16" column="34" lean-forward="true" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SEUkeepingOnline.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="26" selection-end-column="78" />
+        <state relative-caret-position="7130">
+          <caret line="320" selection-start-line="320" selection-end-line="320" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#8220#8221#0" expanded="true" />
-            <element signature="e#8252#8253#0" expanded="true" />
-            <element signature="e#8332#8333#0" expanded="true" />
-            <element signature="e#8364#8365#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/UIBaseFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
+        <state relative-caret-position="207">
+          <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UIMainPanel.java">
+    <entry file="file://$PROJECT_DIR$/src/UIAboutPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="168" column="24" lean-forward="true" selection-start-line="168" selection-start-column="24" selection-end-line="168" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="class#1819:2110" />
-            <element signature="class#1445:1736" />
-            <element signature="method#actionPerformed#0;class#2665:3864" />
-            <element signature="class#4387:4739" />
-            <element signature="e#4874#4875#0" expanded="true" />
-            <element signature="e#4938#4939#0" expanded="true" />
-            <element signature="e#5084#5085#0" expanded="true" />
-            <element signature="e#5148#5149#0" expanded="true" />
-            <element signature="method#login#0;class#UIMainPanel#0" />
-            <element signature="method#refresh_isLogined#0;class#UIMainPanel#0" />
-            <element signature="method#isNumeric#0;class#UIMainPanel#0" />
-            <element signature="method#printToUI#0;class#UIMainPanel#0" />
-          </folding>
+        <state relative-caret-position="207">
+          <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
         </state>
       </provider>
     </entry>

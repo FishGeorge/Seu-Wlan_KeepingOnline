@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.event.*;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 
 public class UIMainPanel extends JPanel {
@@ -86,6 +85,7 @@ public class UIMainPanel extends JPanel {
                         if (len == 9) {
                             if (!ui_psw.equals("")) {
                                 printToUI(false, "START\n");
+                                isRunning = true;
                                 login();
                                 refresh_isLogined();
                             } else {
@@ -110,12 +110,13 @@ public class UIMainPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (isRunning) {
-                    if (isLogined) {
-                        // 注销seu登录
-
-                    }
+//                    if (isLogined) {
+                    // 注销seu登录
+                    logout();
+//                    }
                     // 停止登录器运行
-
+                    keeper_t.stop();
+                    isRunning = false;
                 } else {
                     // 提示登录器未运行
                     printToUI(false, "保持器不在工作中哦\n");
@@ -183,7 +184,7 @@ public class UIMainPanel extends JPanel {
         add(sp_log);
     }
 
-    public void login(){
+    public void login() {
         // 新线程1进行登录尝试
         keeper_t = new Thread(new Runnable() {
             @Override
@@ -196,6 +197,7 @@ public class UIMainPanel extends JPanel {
                         switch (keeper.Login()) {
                             case 0:
                                 printToUI(true, " ...Login Successfully\n");
+                                isLogined = true;
                                 if (keeper.URL_ConnectiveCheck(keeper.BingURL)) {
                                     printToUI(true, " Now online!\n");
                                     interval = 5;
@@ -211,7 +213,10 @@ public class UIMainPanel extends JPanel {
                                 break;
                             default:
                         }
-                    } else printToUI(true, " still keep online\n");
+                    } else {
+                        isLogined = true;
+                        printToUI(true, " still keep online\n");
+                    }
                     // 每隔interval秒检查一次网络状况
                     try {
                         Thread.sleep(interval * 1000);
@@ -224,13 +229,27 @@ public class UIMainPanel extends JPanel {
         keeper_t.start();
     }
 
-    public void refresh_isLogined(){
+    public void logout() {
+        keeper = new SEUkeepingOnline(ui_username, ui_psw);
+        switch (keeper.Logout()) {
+            case 0:
+                printToUI(true, " ...Logout Successfully\n\n\n");
+                isLogined = false;
+                break;
+            case -1:
+                printToUI(true, " ...Logout Failed !\n");
+                break;
+            default:
+        }
+    }
+
+    public void refresh_isLogined() {
         // 新线程2刷新UI登录状态
         new Thread(new Runnable() {
             @Override
             public void run() {
                 while (true) {
-                    isLogined = keeper.getisLogined();
+                    isLogined = keeper.getIsLogined();
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e1) {

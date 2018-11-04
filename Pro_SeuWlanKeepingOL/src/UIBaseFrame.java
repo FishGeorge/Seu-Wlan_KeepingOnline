@@ -10,7 +10,7 @@ public class UIBaseFrame extends JFrame{
         // 设置默认宽度和高度
         setSize(270, 350);
         // 设置打开程序时的显示位置
-        setLocation(1500,250);
+        setLocation(500,250);
         // 设置窗口不可改变大小
         setResizable(false);
         // 将类的实例域中的面板对象实例化
