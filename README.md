@@ -15,7 +15,8 @@ Used name: Seu-Wlan_KeepingOnline
 2018.9.18|v0.4.0|#&ensp;开始基于Java Swing框架的界面开发，已有雏形demo
 2018.9.19|v1.0.0|#&ensp;大体完成了UI设计和其初步开发<br>#&ensp;已可在UI进行登录操作
 2018.11.4|v1.0.1|#&ensp;新增了注销功能<br>#&ensp;新增了联系方式与署名到“关于”页（万一出名了？）
-2018.11.16|v1.0.2|项目预备移植到JavaScript，转向Electron框架中开发。该版本无实质迭代，只修改了Github上项目结构。
+2018.11.16|v1.0.2|项目预备移植到JavaScript，转向Electron框架中开发。（！该版本无实质迭代，只修改了Github上项目结构。）
+2018.11.22|v1.0.3-alpha|移植了UI到Electron框架下（无交互逻辑）
 
 ---
 ## ***ToDo List***

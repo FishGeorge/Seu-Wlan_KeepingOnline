@@ -6,29 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b93684b-e763-4ed9-bded-d2098523363a" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/SEUkeepingOnline.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/SEUkeepingOnline.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/Thread_IOfile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/Thread_IOfile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIAboutPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIAboutPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIBaseFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIBaseFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$8.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel$9.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Pro_SeuWlanKeepingOL/UIMainPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SEUkeepingOnline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SEUkeepingOnline.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UIAboutPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UIAboutPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UIBaseFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UIBaseFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UIMainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UIMainPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
-    </list>
+    <list default="true" id="8b93684b-e763-4ed9-bded-d2098523363a" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -107,6 +85,15 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="987744384">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.9" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FavoritesManager">
     <favorites_list name="Pro_SeuWlanKeepingOL" />
@@ -125,7 +112,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/UIAboutPanel.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="207">
@@ -134,7 +121,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/UIBaseFrame.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="207">
@@ -162,7 +149,7 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -211,7 +198,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="95" />
     <option name="y" value="-16" />
     <option name="width" value="1379" />
@@ -225,8 +212,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -249,7 +237,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -377,17 +364,18 @@
       <workItem from="1541314958212" duration="3661000" />
       <workItem from="1541318955736" duration="249000" />
       <workItem from="1541319276082" duration="146000" />
+      <workItem from="1542803662708" duration="613000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56454000" />
+    <option name="totallyTimeSpent" value="57067000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49876237" visible="true" weight="0.12313433" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49876237" visible="true" weight="0.124200426" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -477,6 +465,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/UIAboutPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/UIBaseFrame.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
@@ -484,13 +479,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UIAboutPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
         </state>
       </provider>
     </entry>

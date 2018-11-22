@@ -1,0 +1,114 @@
+<html>
+
+<head>
+    <title>SeuKeeper</title>
+    <style>
+        body {
+            background-image: linear-gradient(45deg, #EAD790 50%, #EF8C53 100%);
+            text-align: center;
+            padding-top: 15;
+        }
+
+        p {
+            font-family: 'Microsoft YaHei';
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .inputArea {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 0 10;
+            align-items: center;
+        }
+
+        .inputHint {
+            display: flex;
+            align-items: center;
+            width: 80;
+            height: 30;
+        }
+
+        .inputForm {
+            display: flex;
+            align-items: center;
+            height: 35;
+        }
+
+        .chooseArea {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 5;
+            height: 35;
+            width: 120;
+        }
+
+        button {
+            background: rgba(0, 0, 0, 0.40);
+            box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.50);
+            border-radius: 0px;
+            color: white;
+            padding: 10 40;
+            border: none;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            font-size: 14pt;
+        }
+
+        button:hover {
+            background: rgba(0, 0, 0, 0.30);
+        }
+    </style>
+    <link href='https://fonts.googleeapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css' />
+    <script>
+        require('./app.js');
+    </script>
+</head>
+
+<body>
+    <div class='inputArea'>
+        <div class='inputHint'>
+            <p>一卡通号：</p>
+        </div>
+        <div class='inputForm'>
+            <input type="text" name="Username">
+        </div>
+    </div>
+    <div class='inputArea'>
+        <div class='inputHint'>
+            <p>密码：</p>
+        </div>
+        <div class='inputForm'>
+            <input type="password" name="Password">
+        </div>
+    </div>
+    <div style="display:flex;flex-direction:row;justify-content: space-around;">
+        <div class='chooseArea'>
+            <p>开机启动</p>
+            <input type='checkbox' name="AutoStart">
+        </div>
+        <div class='chooseArea'>
+            <p>自动登录</p>
+            <input type='checkbox' name="AutoLogin">
+        </div>
+    </div>
+    <div style="display: flex;justify-content: space-between;padding:0 10;">
+        <button onclick="sayHello()">登录</button>
+        <button onclick="sayHello()">注销</button>
+    </div>
+    <div style="display: flex;flex-direction: row;justify-content: space-between;align-items: center;height:35;padding:2 10;">
+        <p>记录：</p>
+        <div style="display: flex;flex-direction: row;align-items: center;">
+            <p>Ver: </p>
+            <p id='version'>x.x.x</p>
+        </div>
+    </div>
+    <textarea readonly="readonly" style="resize: none;margin-top: 0;padding:5;width:95%;height:160;"></textarea>
+</body>
+
+</html>
