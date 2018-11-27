@@ -1,5 +1,8 @@
 {
     "name": "SeuKeeper",
-    "version": "1.0.2",
-    "main": "src/main.js"
+    "version": "1.0.3-alpha.2",
+    "main": "src/main.js",
+    "dependencies": {
+        "electron-store": "^2.0.0"
+    }
 }

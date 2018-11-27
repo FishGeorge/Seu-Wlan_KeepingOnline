@@ -156,7 +156,7 @@ public class SEUkeepingOnline {
                     response += new String(b, 0, len, "utf-8");
                     len = is.read(b);
                 }
-//            System.out.println(response);
+            System.out.println(response);
                 if (response.contains("\\u8ba4\\u8bc1\\u6210\\u529f")) {
                     isLogined = true;
                     return 0;
@@ -322,6 +322,8 @@ public class SEUkeepingOnline {
     // 测试用例
     public static void main(String[] args) throws Exception {
         SEUkeepingOnline instance = new SEUkeepingOnline("213161568", "Orange0910");
-        instance.Run(10);
+//        instance.Run(10);
+//        instance.GetCookie();
+        instance.Login();
     }
 }
