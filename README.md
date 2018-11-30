@@ -2,15 +2,16 @@
 Used name: Seu-Wlan_KeepingOnline
 ## Introduction
 &emsp;&emsp;为饱受 [seu-wlan时不时掉线，每次打开电脑都要重新输入密码登录] 的痛苦的同学们提供一个解决方案：一个用于检测电脑是否联网（通过seu-wlan），且脱机时将自动登录seu-wlan的Java程序。<br>
-&emsp;&emsp;目前开发正处于测试阶段，代码还没有完整良好的封装，~~程序还没有简洁好看的GUI。最惨的是，除了开发者自己，也没有用户。~~
+&emsp;&emsp;目前开发正处于测试阶段，代码还没有完整良好的封装，~~程序还没有简洁好看的GUI。最惨的是，除了开发者自己，也没有用户。~~<br>
+&emsp;&emsp;E-mail: gongcheng3c@foxmail.com
 
 ---
 ## Install
-continued
+coming soon
 
 ---
 ## Usage
-continued
+coming soon
 
 ---
 ## Release Notes
@@ -26,6 +27,7 @@ continued
 2018.11.16|v1.0.2|项目预备移植到JavaScript，转向Electron框架中开发。（！该版本无实质迭代，只修改了Github上项目结构。）
 2018.11.22|v1.0.3-alpha|移植了UI到Electron框架下（无交互逻辑）
 2018.11.27|v1.0.3-alpha.2|#&ensp;重新设计了UI，进度70%<br>#&ensp;核心逻辑（指登录）移植完毕
+2018.11.30|v1.0.3|#&ensp;添加了托盘图标及其右键菜单<br>#&ensp;添加了本地数据库(electron-store)以存储账密及设置<br>#&ensp;主线程login逻辑添加了判断seu连接状态的部分<br>#&ensp;Author现可单击弹出git仓库网页<br>#&ensp;as及al功能仍无效，登录提示暂用alert()框
 
 ---
 ## To do

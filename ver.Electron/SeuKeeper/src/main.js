@@ -6,14 +6,28 @@ const { app,
     MenuItem,
     dialog,
     ipcMain,
-    net
+    net,
+    Tray,
+    shell
 } = require('electron');
 
+const Store = require('electron-store');
+const store = new Store();
+
 let mainWindow = null;
+let appIcon = null;
+let iconMenu = null;
+
+const version = '1.0.3';
+
+var main_IfAutoStart = false;
+var main_IfAutoLogin = false;
+var main_isLogined = false;
+var main_runningTime = 0;
 
 const createWindow = () => {
     // 隐藏菜单栏
-    // Menu.setApplicationMenu(null)
+    Menu.setApplicationMenu(null)
     // Create the browser window.
     mainWindow = new BrowserWindow({
         // width: 300,
@@ -27,21 +41,76 @@ const createWindow = () => {
         minimizable: false,
         maximizable: false,
         // alwaysOnTop: true
+        show: false
     });
-
+    // 优雅地显示窗口
+    mainWindow.once('ready-to-show', () => {
+        mainWindow.show();
+    });
     // and load the index.html of the app.
     mainWindow.loadURL(`file://${__dirname}/index.html`);
-
     // Open the DevTools.
     mainWindow.webContents.openDevTools();
+    // 关闭时清空mainWindow
+    mainWindow.on('closed', () => {
+        mainWindow = null;
+    });
 };
 
-const version = '1.0.3-alpha.2';
-
-app.on('ready', createWindow);
+app.on('ready', () => {
+    // 托盘图标右键菜单
+    appIcon = new Tray(`${__dirname}/test.ico`);
+    iconMenu = Menu.buildFromTemplate([
+        {
+            label: '关于',
+            click: () => {
+                shell.openExternal('https://github.com/FishGeorge/SeuKeeper');
+            }
+        },
+        { type: 'separator' },
+        {
+            id: 'AS',
+            label: '开机启动',
+            type: 'checkbox',
+            checked: main_IfAutoStart,
+            click: () => {
+                main_IfAutoStart = !main_IfAutoStart;
+                mainWindow.webContents.send('action', 'update|AS|');
+            }
+        },
+        {
+            id: 'AL',
+            label: '自动登录',
+            type: 'checkbox',
+            checked: main_IfAutoLogin,
+            click: () => {
+                main_IfAutoLogin = !main_IfAutoLogin;
+                mainWindow.webContents.send('action', 'update|AL|');
+                if (!main_IfAutoStart && main_IfAutoLogin) {
+                    main_IfAutoStart = !main_IfAutoStart;
+                    mainWindow.webContents.send('action', 'update|AS|');
+                    console.log('main_AS::' + main_IfAutoStart);
+                }
+                iconMenu.getMenuItemById('AS').checked = main_IfAutoStart;
+            }
+        },
+        { type: 'separator' },
+        { label: '退出', role: 'quit' }
+    ]);
+    appIcon.setToolTip('SeuKeeper');
+    appIcon.setContextMenu(iconMenu);
+    appIcon.on("double-click", () => {
+        if (mainWindow === null) {
+            createWindow();
+        }
+    });
+    // 创建窗口
+    createWindow();
+});
 
 app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') app.quit();
+    // if (process.platform !== 'darwin') app.quit();
+    // app.quit();
 });
 
 app.on('activate', () => {
@@ -50,11 +119,29 @@ app.on('activate', () => {
     if (mainWindow === null) {
         createWindow();
     }
-    // 告知版本号
-
 });
 
-function getCookie(arg1) {
+function ifURLconnective(url) {
+    return new Promise(function (resolve, reject) {
+        let request = null;
+        request = net.request({
+            method: 'GET',
+            url: url
+        });
+        request.on('response', (response) => {
+            // console.log(response);
+            if (response.statusCode === 200) {
+                resolve(0);
+            }
+            else
+                resolve(-1);
+        });
+        request.end();
+        request = null;
+    })
+}
+
+function getCookie(username) {
     return new Promise(function (resolve, reject) {
         let request = null;
         request = net.request({
@@ -63,7 +150,7 @@ function getCookie(arg1) {
         });
         request.on('response', (response) => {
             cookie = response.headers['set-cookie'][1];
-            cookie = cookie + "; think_language=zh-Hans-CN" + "; sunriseUsername=" + arg1;
+            cookie = cookie + "; think_language=zh-Hans-CN" + "; sunriseUsername=" + username;
             console.log(cookie);
             resolve();
         });
@@ -72,10 +159,10 @@ function getCookie(arg1) {
     });
 }
 
-function login(arg1, arg2) {
+function login(username, password) {
     return new Promise(function (resolve, reject) {
         let request = null;
-        let up = "username=" + arg1 + "&password=" + Base64.encode(arg2) + "&enablemacauth=0";
+        let up = "username=" + username + "&password=" + Base64.encode(password) + "&enablemacauth=0";
         let options = {
             method: 'POST',
             url: SeuLoginURL,
@@ -103,7 +190,7 @@ function login(arg1, arg2) {
                 // console.log(chunk.toString());
                 if (chunk.toString().indexOf("\\u8ba4\\u8bc1\\u6210\\u529f") >= 0) {
                     // console.log('00000');
-                    console.log(chunk.toString().indexOf("\\u8ba4\\u8bc1\\u6210\\u529f"));
+                    // console.log(chunk.toString().indexOf("\\u8ba4\\u8bc1\\u6210\\u529f"));
                     resolve(0);
                 }
                 else if (chunk.toString().indexOf("\\u8ba4\\u8bc1\\u5931\\u8d25\\uff0c\\u8d26\\u6237\\u6d41\\u91cf\\u8d85\\u914d\\u989d\\u9501\\u5b9a") >= 0) {
@@ -133,43 +220,27 @@ ipcMain.on('network', (e, msg) => {
     let arg1 = msg.split('|')[1];
     let arg2 = msg.split('|')[2];
     switch (type) {
-        case 'ifURLconnective': {
-            let request = null;
-            if (arg1 === 0)
-                request = net.request({
-                    method: 'GET',
-                    url: SeuURL
-                });
-            else
-                request = net.request({
-                    method: 'GET',
-                    url: BingURL
-                });
-            request.on('response', (response) => {
-                // console.log(response);
-                if (response.statusCode === 200) {
-                    // console.log("test " + arg1);
-
-                    // e.returnValue = 'true';
-
-                    // break; 这里不能用break（因为这是函数参数里啊魂淡），所以想了下面这个鬼点子
-                    // i = -1;// 让for循环结束 ps：request是异步的，这样做没什么卵用。
-                }
-                else
-                    // e.returnValue = 'false';
-                    ;
+        case 'ifURLconnective':
+            let url = null;
+            if (arg1 === 0) url = SeuURL
+            else url = BingURL;
+            ifURLconnective(url).then(function (data) {
+                e.sender.send('network', 'ifURLconnective|' + data + '|');
             });
-            request.end();
-        }
             break;
         case 'login':
-            // GetCookie
-            getCookie(arg1).then(function (data) {
-                // Login
-                return login(arg1, arg2);
-            }).then(function (data) {
-                // console.log("step2: " + data);
-                e.sender.send('network', 'login|' + data + '|123');
+            ifURLconnective(SeuURL).then(function (data) {
+                e.sender.send('network', 'ifURLconnective|' + data + '|');
+                if (data === -1)
+                    e.sender.send('action', 'alert|' + "未连接seu" + '|');
+                else
+                    getCookie(arg1).then(function (data) {
+                        // Login
+                        return login(arg1, arg2);
+                    }).then(function (data) {
+                        // console.log("step2: " + data);
+                        e.sender.send('network', 'login|' + data + '|');
+                    });
             });
             break;
         default:
@@ -182,15 +253,35 @@ ipcMain.on('action', (e, msg) => {
     let arg1 = msg.split('|')[1];
     let arg2 = msg.split('|')[2];
     switch (type) {
+        // 告知版本号    
         case 'ver':
-            console.log('ver|' + version + '|')
+            // console.log('ver|' + version + '|')
             e.sender.send('action', 'ver|' + version + '|');
             break;
-        case 'exit':
-            // 做点其它操作：比如记录窗口大小、位置等，下次启动时自动使用这些设置；不过因为这里（主进程）无法访问localStorage，这些数据需要使用其它的方式来保存和加载，这里就不作演示了。这里推荐一个相关的工具类库，可以使用它在主进程中保存加载配置数据：https://github.com/sindresorhus/electron-store
-            //...
-            safeExit = true;
-            app.quit();// 退出程序
+        // 一些变量改变刷新
+        case 'update':
+            switch (arg1) {
+                case 'AS':
+                    main_IfAutoStart = !main_IfAutoStart;
+                    console.log('main_AS:' + main_IfAutoStart);
+                    iconMenu.getMenuItemById('AS').checked = main_IfAutoStart;
+                    break;
+                case 'AL':
+                    main_IfAutoLogin = !main_IfAutoLogin;
+                    console.log('main_AL:' + main_IfAutoLogin);
+                    iconMenu.getMenuItemById('AL').checked = main_IfAutoLogin;
+                    break;
+                case 'IL':
+                    main_isLogined = !main_isLogined;
+                    break;
+                case 'RT':
+                    main_runningTime = arg2;
+                    break;
+                default:
+            }
+            break;
+        case 'about':
+            shell.openExternal('https://github.com/FishGeorge/SeuKeeper');
             break;
         default:
     }
