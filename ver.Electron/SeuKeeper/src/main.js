@@ -18,7 +18,7 @@ let mainWindow = null;
 let appIcon = null;
 let iconMenu = null;
 
-const version = '1.0.3';
+const version = '1.0.4-alpha';
 
 var main_IfAutoStart = false;
 var main_IfAutoLogin = false;
@@ -27,7 +27,7 @@ var main_runningTime = 0;
 
 const createWindow = () => {
     // 隐藏菜单栏
-    Menu.setApplicationMenu(null)
+    // Menu.setApplicationMenu(null)
     // Create the browser window.
     mainWindow = new BrowserWindow({
         // width: 300,
@@ -60,6 +60,13 @@ const createWindow = () => {
 app.on('ready', () => {
     // 托盘图标右键菜单
     appIcon = new Tray(`${__dirname}/test.ico`);
+    // 开关读取
+    let AS = store.get('AutoStart', 'null');
+    let AL = store.get('AutoLogin', 'null');
+    if (AS.toString() !== "null")
+        main_IfAutoStart = AS.toString();
+    if (AL.toString() !== "null")
+        main_IfAutoLogin = AL.toString();
     iconMenu = Menu.buildFromTemplate([
         {
             label: '关于',
@@ -189,16 +196,12 @@ function login(username, password) {
                 // 此处的chunk是buffer，需要toString()
                 // console.log(chunk.toString());
                 if (chunk.toString().indexOf("\\u8ba4\\u8bc1\\u6210\\u529f") >= 0) {
-                    // console.log('00000');
-                    // console.log(chunk.toString().indexOf("\\u8ba4\\u8bc1\\u6210\\u529f"));
                     resolve(0);
                 }
                 else if (chunk.toString().indexOf("\\u8ba4\\u8bc1\\u5931\\u8d25\\uff0c\\u8d26\\u6237\\u6d41\\u91cf\\u8d85\\u914d\\u989d\\u9501\\u5b9a") >= 0) {
-                    // console.log(-1111);
                     resolve(-1);
                 }
                 else {
-                    // console.log(-2222)
                     resolve(-2);
                 }
             });
@@ -221,6 +224,7 @@ ipcMain.on('network', (e, msg) => {
     let arg2 = msg.split('|')[2];
     switch (type) {
         case 'ifURLconnective':
+            // 该接口暂无用
             let url = null;
             if (arg1 === 0) url = SeuURL
             else url = BingURL;
@@ -230,7 +234,6 @@ ipcMain.on('network', (e, msg) => {
             break;
         case 'login':
             ifURLconnective(SeuURL).then(function (data) {
-                e.sender.send('network', 'ifURLconnective|' + data + '|');
                 if (data === -1)
                     e.sender.send('action', 'alert|' + "未连接seu" + '|');
                 else
@@ -239,9 +242,38 @@ ipcMain.on('network', (e, msg) => {
                         return login(arg1, arg2);
                     }).then(function (data) {
                         // console.log("step2: " + data);
-                        e.sender.send('network', 'login|' + data + '|');
+                        e.sender.send('network', 'login_bck|0|' + data);
                     });
             });
+            break;
+        case 'online_check':
+            ifURLconnective(SeuURL).then((data1) => {
+                if (data1 === '0')
+                    ifURLconnective(BingURL).then((data2) => {
+                        if (data1 !== '0')
+                            getCookie(arg1).then(function (data) {
+                                // Login
+                                return login(arg1, arg2);
+                            }).then(function (data) {
+                                e.sender.send('network', 'online_state|' + data1 + '|' + data);
+                            });
+                    });
+                else
+                    e.sender.send('network', 'online_state|' + data1 + '|');
+            });
+            break;
+        case 'relogin':
+            getCookie(arg1).then(function (data) {
+                // Login
+                return login(arg1, arg2);
+            }).then(function (data) {
+                // console.log("step2: " + data);
+                e.sender.send('network', 'login_bck|1|' + data);
+            });
+            break;
+        case 'logout':
+            // 1.0.4测试暂用
+            e.sender.send('network', 'logout_bck|' + 0 + '|');
             break;
         default:
     }
@@ -256,7 +288,7 @@ ipcMain.on('action', (e, msg) => {
         // 告知版本号    
         case 'ver':
             // console.log('ver|' + version + '|')
-            e.sender.send('action', 'ver|' + version + '|');
+            e.sender.send('action', 'ver_bck|' + version + '|');
             break;
         // 一些变量改变刷新
         case 'update':

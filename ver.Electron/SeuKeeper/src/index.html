@@ -9,6 +9,8 @@
             background-image: linear-gradient(60deg, rgb(255, 230, 142) 50%, rgb(255, 185, 79) 100%);
             text-align: center;
             /* padding-top: 15; */
+            overflow-y: hidden;
+            overflow-x: hidden;
         }
 
         #div_title{
@@ -36,6 +38,11 @@
             font-size: 16px;
             font-family: 'Microsoft YaHei';
             -webkit-app-region: no-drag;
+
+            position: relative;
+            animation: Page_afterlogin 0.75s;
+            animation-fill-mode: forwards;
+            animation-play-state: paused;
         }
 
         #div_setting {
@@ -44,6 +51,11 @@
             justify-content: space-between;
             margin:40px 10px;
             margin-bottom: 0;
+            
+            position: relative;
+            animation: Page_afterlogin 0.75s;
+            animation-fill-mode: forwards;
+            animation-play-state: paused;
         }
 
         .switch_out {
@@ -90,6 +102,11 @@
             box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.50);
             font-weight: 300;
             -webkit-app-region: no-drag;
+
+            position: relative;
+            animation: btn_afterlogin 0.75s;
+            animation-fill-mode: forwards;
+            animation-play-state: paused;
         }
 
         button:hover {
@@ -102,6 +119,12 @@
             font-size: 17px;
             font-family: 'Microsoft YaHei';
             color: white;
+        }
+
+        #p_tip{
+            width: 100%;
+            font-size:14px;
+            font-family: 'Microsoft JhengHei';
         }
 
         #div_about{
@@ -140,8 +163,98 @@
             height:12px;
             margin: 2px 0;
         }
+
+        @keyframes btn_afterlogin{
+            from{
+                top:0px;
+            }
+            to{
+                top:70px;
+            }
+        }
+
+        @keyframes btn_afterlogout{
+            from{
+                top:70px;
+            }
+            to{
+                top:0px;
+            }
+        }
+        
+        @keyframes Page_afterlogin{
+            from{
+                right:0px;
+            }
+            to{
+                right:300px;
+            }
+        }
+
+        @keyframes Page_afterlogout{
+            from{
+                right:300px;
+            }
+            to{
+                right:0px;
+            }
+        }
+        
+        @keyframes OutPage_afterlogin{
+            from{
+                right:-300px;
+            }
+            to{
+                right:0px;
+            }
+        }
+
+        @keyframes OutPage_afterlogout{
+            from{
+                right:0px;
+            }
+            to{
+                right:-300px;
+            }
+        }
+
+        #div_outPage{
+            width: 100%;
+
+            position: relative;
+            right:-300px;
+            top:-300px;
+
+            animation: OutPage_afterlogin 0.75s;
+            animation-fill-mode: forwards;
+            animation-play-state: paused;
+        }
+
+        #div_time{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-end;
+
+            position: relative;
+            top: 100px;
+        }
+
+        .p_time_num{
+            font-family: 'Microsoft JhengHei';
+            font-size:50px;
+            margin: 0;
+        }
+        
+        .p_time_unit{
+            font-family: 'Microsoft JhengHei';
+            font-size:16px;
+            font-weight: bold;
+            margin: 0;
+            position: relative;
+            bottom:12px;
+        }
     </style>
-    <script src="./app.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -167,9 +280,24 @@
         </div>
     </div>
     <div>
-        <button onclick="login()">
-            <p class="p_button">登 录</p>
+        <button id='button' onclick="login()">
+            <p id='p_btn' class="p_button" onselectstart="return false;">登 录</p>
         </button>
+    </div>
+    <div>
+        <p id='p_tip' onselectstart="return false;"></p>
+    </div>
+    <div id='div_outPage'>
+        <div id='div_time'>
+            <p id='p_time_d' class='p_time_num' onselectstart="return false;">00</p>
+            <p class='p_time_unit' onselectstart="return false;">天</p>
+            <p class='p_time_unit' onselectstart="return false;">&ensp;</p>
+            <p id='p_time_h' class='p_time_num' onselectstart="return false;">00</p>
+            <p class='p_time_unit' onselectstart="return false;">:</p>
+            <p id='p_time_m' class='p_time_num' onselectstart="return false;">00</p>
+            <p class='p_time_unit' onselectstart="return false;">:</p>
+            <p id='p_time_s' class='p_time_num' onselectstart="return false;">00</p>
+        </div>
     </div>
     <div id='div_about'>
         <div id='div_intro'>
@@ -181,5 +309,7 @@
         </div>
     </div>
 </body>
+
+<script src="./app.js" type="text/javascript"></script>
 
 </html>

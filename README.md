@@ -28,6 +28,7 @@ coming soon
 2018.11.22|v1.0.3-alpha|移植了UI到Electron框架下（无交互逻辑）
 2018.11.27|v1.0.3-alpha.2|#&ensp;重新设计了UI，进度70%<br>#&ensp;核心逻辑（指登录）移植完毕
 2018.11.30|v1.0.3|#&ensp;添加了托盘图标及其右键菜单<br>#&ensp;添加了本地数据库(electron-store)以存储账密及设置<br>#&ensp;主线程login逻辑添加了判断seu连接状态的部分<br>#&ensp;Author现可单击弹出git仓库网页<br>#&ensp;as及al功能仍无效，登录提示暂用alert()框
+2018.12.11|v1.0.4-alpha|#&ensp;添加了UI登录状态页（及动画效果），但登录逻辑完整及正确性尚待检查<br>#&ensp;注销功能待移植<br>#&ensp;main进程与UI进程的as与al值有矛盾存在，窗口初始化时的读取就有问题<br>#&ensp;as及al功能仍然无效，登录提示用p_tip尚未完成
 
 ---
 ## To do
