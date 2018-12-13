@@ -29,6 +29,7 @@ coming soon
 2018.11.27|v1.0.3-alpha.2|#&ensp;重新设计了UI，进度70%<br>#&ensp;核心逻辑（指登录）移植完毕
 2018.11.30|v1.0.3|#&ensp;添加了托盘图标及其右键菜单<br>#&ensp;添加了本地数据库(electron-store)以存储账密及设置<br>#&ensp;主线程login逻辑添加了判断seu连接状态的部分<br>#&ensp;Author现可单击弹出git仓库网页<br>#&ensp;as及al功能仍无效，登录提示暂用alert()框
 2018.12.11|v1.0.4-alpha|#&ensp;添加了UI登录状态页（及动画效果），但登录逻辑完整及正确性尚待检查<br>#&ensp;注销功能待移植<br>#&ensp;main进程与UI进程的as与al值有矛盾存在，窗口初始化时的读取就有问题<br>#&ensp;as及al功能仍然无效，登录提示用p_tip尚未完成
+2018.12.13|v1.0.4-alpha.2|#&ensp;修复了as及al值的之前存在的冲突，作者说这块8可能再出问题<br>#&ensp;实现了保持登录（正所谓Keeper）的逻辑，尚待测试<br>#&ensp;注销功能仍然待移植<br>#&ensp;as功能仍然无效，登录提示用p_tip尚未完成。但是al的一半可以用了（定义：自动登录=打开程序时若未登录则自动登录（须开机自启<=没写））<br>#&ensp;添加了一些console输出时间戳记录
 
 ---
 ## To do

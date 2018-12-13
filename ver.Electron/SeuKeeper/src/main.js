@@ -11,14 +11,14 @@ const { app,
     shell
 } = require('electron');
 
-const Store = require('electron-store');
-const store = new Store();
+// const Store = require('electron-store');
+// const store = new Store();
 
 let mainWindow = null;
 let appIcon = null;
 let iconMenu = null;
 
-const version = '1.0.4-alpha';
+const version = '1.0.4-alpha.2';
 
 var main_IfAutoStart = false;
 var main_IfAutoLogin = false;
@@ -45,7 +45,8 @@ const createWindow = () => {
     });
     // 优雅地显示窗口
     mainWindow.once('ready-to-show', () => {
-        mainWindow.show();
+        // 进行窗口初始化
+        mainWindow.webContents.send('action', 'init||');
     });
     // and load the index.html of the app.
     mainWindow.loadURL(`file://${__dirname}/index.html`);
@@ -60,13 +61,13 @@ const createWindow = () => {
 app.on('ready', () => {
     // 托盘图标右键菜单
     appIcon = new Tray(`${__dirname}/test.ico`);
-    // 开关读取
-    let AS = store.get('AutoStart', 'null');
-    let AL = store.get('AutoLogin', 'null');
-    if (AS.toString() !== "null")
-        main_IfAutoStart = AS.toString();
-    if (AL.toString() !== "null")
-        main_IfAutoLogin = AL.toString();
+    // 开关读取  /v1.0.4-alpha.2中将所有store操作移交给app.js线程
+    // let AS = store.get('AutoStart', 'null');
+    // let AL = store.get('AutoLogin', 'null');
+    // if (AS.toString() !== "null")
+    //     main_IfAutoStart = AS.toString();
+    // if (AL.toString() !== "null")
+    //     main_IfAutoLogin = AL.toString();
     iconMenu = Menu.buildFromTemplate([
         {
             label: '关于',
@@ -82,7 +83,15 @@ app.on('ready', () => {
             checked: main_IfAutoStart,
             click: () => {
                 main_IfAutoStart = !main_IfAutoStart;
-                mainWindow.webContents.send('action', 'update|AS|');
+                iconMenu.getMenuItemById('AS').checked = main_IfAutoStart;
+                mainWindow.webContents.send('action', 'update|AS|' + main_IfAutoStart);
+                // iconMenu.getMenuItemById('AS').checked = str2bool(main_IfAutoStart);
+                // 若不开机自启，则必不能自动登录
+                if (!main_IfAutoStart && main_IfAutoLogin) {
+                    main_IfAutoLogin = !main_IfAutoLogin;
+                    iconMenu.getMenuItemById('AL').checked = main_IfAutoLogin;
+                    mainWindow.webContents.send('action', 'update|AL|' + main_IfAutoLogin);
+                }
             }
         },
         {
@@ -92,13 +101,16 @@ app.on('ready', () => {
             checked: main_IfAutoLogin,
             click: () => {
                 main_IfAutoLogin = !main_IfAutoLogin;
-                mainWindow.webContents.send('action', 'update|AL|');
+                iconMenu.getMenuItemById('AL').checked = main_IfAutoLogin;
+                mainWindow.webContents.send('action', 'update|AL|' + main_IfAutoLogin);
+                // console.log('update|AL|' + main_IfAutoLogin);
+                // 若自动登录，则必开机自启
                 if (!main_IfAutoStart && main_IfAutoLogin) {
                     main_IfAutoStart = !main_IfAutoStart;
-                    mainWindow.webContents.send('action', 'update|AS|');
-                    console.log('main_AS::' + main_IfAutoStart);
+                    iconMenu.getMenuItemById('AS').checked = main_IfAutoStart;
+                    mainWindow.webContents.send('action', 'update|AS|' + main_IfAutoStart);
+                    // console.log('main_AS::' + main_IfAutoStart);
                 }
-                iconMenu.getMenuItemById('AS').checked = main_IfAutoStart;
             }
         },
         { type: 'separator' },
@@ -136,12 +148,13 @@ function ifURLconnective(url) {
             url: url
         });
         request.on('response', (response) => {
-            // console.log(response);
+            // console.log(response.statusCode);
             if (response.statusCode === 200) {
-                resolve(0);
+                // console.log('get0')
+                resolve('0');
             }
             else
-                resolve(-1);
+                resolve('-1');
         });
         request.end();
         request = null;
@@ -196,13 +209,13 @@ function login(username, password) {
                 // 此处的chunk是buffer，需要toString()
                 // console.log(chunk.toString());
                 if (chunk.toString().indexOf("\\u8ba4\\u8bc1\\u6210\\u529f") >= 0) {
-                    resolve(0);
+                    resolve('0');
                 }
                 else if (chunk.toString().indexOf("\\u8ba4\\u8bc1\\u5931\\u8d25\\uff0c\\u8d26\\u6237\\u6d41\\u91cf\\u8d85\\u914d\\u989d\\u9501\\u5b9a") >= 0) {
-                    resolve(-1);
+                    resolve('-1');
                 }
                 else {
-                    resolve(-2);
+                    resolve('-2');
                 }
             });
         });
@@ -226,7 +239,7 @@ ipcMain.on('network', (e, msg) => {
         case 'ifURLconnective':
             // 该接口暂无用
             let url = null;
-            if (arg1 === 0) url = SeuURL
+            if (arg1 === '0') url = SeuURL
             else url = BingURL;
             ifURLconnective(url).then(function (data) {
                 e.sender.send('network', 'ifURLconnective|' + data + '|');
@@ -234,45 +247,49 @@ ipcMain.on('network', (e, msg) => {
             break;
         case 'login':
             ifURLconnective(SeuURL).then(function (data) {
-                if (data === -1)
+                if (data === '-1')
                     e.sender.send('action', 'alert|' + "未连接seu" + '|');
                 else
                     getCookie(arg1).then(function (data) {
                         // Login
                         return login(arg1, arg2);
                     }).then(function (data) {
-                        // console.log("step2: " + data);
-                        e.sender.send('network', 'login_bck|0|' + data);
+                        console.log("login result: " + data);
+                        e.sender.send('network', 'login_bck|' + data + '|' + 0);// 0为测试用
                     });
             });
             break;
         case 'online_check':
+            // console.log('hit1');
             ifURLconnective(SeuURL).then((data1) => {
                 if (data1 === '0')
                     ifURLconnective(BingURL).then((data2) => {
-                        if (data1 !== '0')
-                            getCookie(arg1).then(function (data) {
-                                // Login
-                                return login(arg1, arg2);
-                            }).then(function (data) {
-                                e.sender.send('network', 'online_state|' + data1 + '|' + data);
-                            });
+                        // if (data2 !== '0')
+                        //     getCookie(arg1).then(function (data) {
+                        //         // Login
+                        //         return login(arg1, arg2);
+                        //     }).then(function (data) {
+                        //         e.sender.send('network', 'online_check_bck|' + data1 + '|' + data);
+                        //     });
+                        e.sender.send('network', 'online_check_bck|' + data1 + '|' + data2);
                     });
-                else
-                    e.sender.send('network', 'online_state|' + data1 + '|');
+                else {
+                    // console.log('hit2');
+                    e.sender.send('network', 'online_check_bck|' + data1 + '|');
+                }
             });
             break;
-        case 'relogin':
-            getCookie(arg1).then(function (data) {
-                // Login
-                return login(arg1, arg2);
-            }).then(function (data) {
-                // console.log("step2: " + data);
-                e.sender.send('network', 'login_bck|1|' + data);
-            });
-            break;
+        // case 'relogin':
+        //     getCookie(arg1).then(function (data) {
+        //         // Login
+        //         return login(arg1, arg2);
+        //     }).then(function (data) {
+        //         // console.log("step2: " + data);
+        //         e.sender.send('network', 'login_bck|1|' + data);
+        //     });
+        //     break;
         case 'logout':
-            // 1.0.4测试暂用
+            // 1.0.4测试暂用，暂时不实现真正注销
             e.sender.send('network', 'logout_bck|' + 0 + '|');
             break;
         default:
@@ -285,6 +302,10 @@ ipcMain.on('action', (e, msg) => {
     let arg1 = msg.split('|')[1];
     let arg2 = msg.split('|')[2];
     switch (type) {
+        // 窗口初始化完成
+        case 'init_bck':
+            mainWindow.show();
+            break;
         // 告知版本号    
         case 'ver':
             // console.log('ver|' + version + '|')
@@ -294,17 +315,17 @@ ipcMain.on('action', (e, msg) => {
         case 'update':
             switch (arg1) {
                 case 'AS':
-                    main_IfAutoStart = !main_IfAutoStart;
-                    console.log('main_AS:' + main_IfAutoStart);
+                    main_IfAutoStart = str2bool(arg2);
+                    console.log('main_AS_fromApp:' + main_IfAutoStart);
                     iconMenu.getMenuItemById('AS').checked = main_IfAutoStart;
                     break;
                 case 'AL':
-                    main_IfAutoLogin = !main_IfAutoLogin;
-                    console.log('main_AL:' + main_IfAutoLogin);
+                    main_IfAutoLogin = str2bool(arg2);
+                    console.log('main_AL_fromApp:' + main_IfAutoLogin);
                     iconMenu.getMenuItemById('AL').checked = main_IfAutoLogin;
                     break;
                 case 'IL':
-                    main_isLogined = !main_isLogined;
+                    main_isLogined = str2bool(arg2);
                     break;
                 case 'RT':
                     main_runningTime = arg2;
@@ -318,6 +339,15 @@ ipcMain.on('action', (e, msg) => {
         default:
     }
 });
+
+function str2bool(str) {
+    if (str === 'true')
+        return true;
+    else if (str === 'false')
+        return false;
+    else
+        return -1;
+}
 
 // Base64加解密
 var Base64 = {

@@ -27,50 +27,16 @@ var p_time_h = document.getElementById('p_time_h');
 var p_time_m = document.getElementById('p_time_m');
 var p_time_s = document.getElementById('p_time_s');
 
-// 登录状态下每5分钟检查一次外网连接
+/*----------------------------定时函数----------------------------*/
+// 每5分钟若处于登录态，检查一次外网连接
 var online_check = setInterval(() => {
-    ipcRenderer.send('network', 'online_check||');
+    if (isLogined) {
+        console.log(getFormatTime() + ' | Online check');
+        ipcRenderer.send('network', 'online_check||');
+    }
 }, 300000);
 
-// switchUI刷新
-function switch_refresh(type) {
-    let div_out = null;
-    let Val_bool = null;
-    if (type === "autoStart") {
-        Val_bool = IfAutoStart;
-        div_out = document.getElementById("sw_autoStart");
-    } else {
-        Val_bool = IfAutoLogin;
-        div_out = document.getElementById("sw_autoLogin");
-    }
-    console.log('Val_bool ' + Val_bool);
-    div_out.style.setProperty('background-color', Val_bool ? '#a1ed2b' : 'white');
-    div_out.style.setProperty('flex-direction', Val_bool ? 'row-reverse' : 'row');
-}
-
-// 开机自启/自动登录 switch点击事件
-function switch_click(type) {
-    if (type === "autoStart") {
-        IfAutoStart = !IfAutoStart;
-        switch_refresh(type);
-        store.set('AutoStart', IfAutoStart);
-        ipcRenderer.send('action', 'update|AS|');
-    }
-    else if (type === "autoLogin") {
-        IfAutoLogin = !IfAutoLogin;
-        switch_refresh(type);
-        store.set('AutoLogin', IfAutoLogin);
-        ipcRenderer.send('action', 'update|AL|');
-        if (!IfAutoStart && IfAutoLogin) {
-            IfAutoStart = !IfAutoStart;
-            switch_refresh("autoStart");
-            store.set('AutoStart', IfAutoStart);
-            ipcRenderer.send('action', 'update|AS|');
-        }
-    }
-}
-
-// 
+// 读秒啊
 var countingTime = setInterval(() => {
     // console.log('hit0');
     if (isLogined) {
@@ -81,44 +47,84 @@ var countingTime = setInterval(() => {
         refresh_time();
     }
 }, 1000);
+/*--------------------------------------------------------*/
 
-//
-function refresh_time() {
-    p_time_d.innerText = parseInt(runningTime / 24 / 3600);
-    p_time_h.innerText = padding(parseInt(runningTime / 3600) % 24);
-    p_time_m.innerText = padding(parseInt(runningTime / 60) % 60);
-    p_time_s.innerText = padding(runningTime % 60);
-}
-
-// 数字填0到两位 string
-function padding(num) {
-    var len = num.toString().length;
-    while (len < 2) {
-        num = "0" + num;
-        len++;
+/*----------------------------点击事件响应函数----------------------------*/
+// 开机自启/自动登录 switch点击事件
+function switch_click(type) {
+    if (type === "autoStart") {
+        // console.log('test1 '+IfAutoStart);
+        IfAutoStart = !IfAutoStart;
+        // console.log('test2 '+IfAutoStart);
+        switch_refresh(type);
+        store.set('AutoStart', IfAutoStart);
+        ipcRenderer.send('action', 'update|AS|' + IfAutoStart);
+        // 若不开机自启，则必不能自动登录
+        if (!IfAutoStart && IfAutoLogin) {
+            IfAutoLogin = !IfAutoLogin;
+            switch_refresh("autoLogin");
+            store.set('AutoLogin', IfAutoLogin);
+            ipcRenderer.send('action', 'update|AL|' + IfAutoLogin);
+        }
     }
-    return num;
-}
-
-// 刷新input取值
-function refresh_up() {
-    // var input_u = document.getElementById('input_username');
-    // var input_p = document.getElementById('input_password');
-    Username = input_u.value;
-    Password = input_p.value;
-    store.set('UserName', Username);
-    store.set('Password', Password);
+    else if (type === "autoLogin") {
+        IfAutoLogin = !IfAutoLogin;
+        switch_refresh(type);
+        store.set('AutoLogin', IfAutoLogin);
+        ipcRenderer.send('action', 'update|AL|' + IfAutoLogin);
+        // 若自动登录，则必开机自启
+        if (!IfAutoStart && IfAutoLogin) {
+            IfAutoStart = !IfAutoStart;
+            switch_refresh("autoStart");
+            store.set('AutoStart', IfAutoStart);
+            ipcRenderer.send('action', 'update|AS|' + IfAutoStart);
+        }
+    }
 }
 
 // “登录”按键点击事件
 function login() {
-    refresh_up();
+    refresh_input();
     ipcRenderer.send('network', 'login|' + Username + '|' + Password);
 }
 
 // “注销”按键点击事件
 function logout() {
     ipcRenderer.send('network', 'logout||');
+}
+
+// 点击跳转关于页
+function about_onClick() {
+    ipcRenderer.send('action', 'about||');
+}
+/*--------------------------------------------------------*/
+
+/*----------------------------UI刷新函数----------------------------*/
+// switchUI刷新
+function switch_refresh(type) {
+    let div_out = null;
+    let Val_bool = null;
+    if (type === "autoStart") {
+        Val_bool = IfAutoStart;
+        div_out = document.getElementById("sw_autoStart");
+        // console.log('hit ' + IfAutoStart);
+        // console.log(div_out.style.backgroundColor.toString());
+    } else {
+        Val_bool = IfAutoLogin;
+        div_out = document.getElementById("sw_autoLogin");
+    }
+    div_out.style.setProperty('background-color', Val_bool ? '#a1ed2b' : 'white');
+    div_out.style.setProperty('flex-direction', Val_bool ? 'row-reverse' : 'row');
+}
+
+// 刷新input取值
+function refresh_input() {
+    // var input_u = document.getElementById('input_username');
+    // var input_p = document.getElementById('input_password');
+    Username = input_u.value;
+    Password = input_p.value;
+    store.set('UserName', Username);
+    store.set('Password', Password);
 }
 
 // 登录成功后
@@ -186,16 +192,52 @@ function afterLogout() {
     }, 750);
 }
 
-// 点击跳转关于页
-function about_onClick() {
-    ipcRenderer.send('action', 'about||');
+//
+function refresh_time() {
+    p_time_d.innerText = parseInt(runningTime / 24 / 3600);
+    p_time_h.innerText = padding(parseInt(runningTime / 3600) % 24);
+    p_time_m.innerText = padding(parseInt(runningTime / 60) % 60);
+    p_time_s.innerText = padding(runningTime % 60);
+}
+/*--------------------------------------------------------*/
+
+/*----------------------------utils函数----------------------------*/
+// 数字填0到两位 string
+function padding(num) {
+    var len = num.toString().length;
+    while (len < 2) {
+        num = "0" + num;
+        len++;
+    }
+    return num;
 }
 
-// 与主进程（main.js）的通信
-// 发送（窗口初始化）
-ipcRenderer.send('action', 'ver||');
-// ipcRenderer.send('action', 'load||');
-// 接收
+function str2bool(str) {
+    if (str === 'true')
+        return true;
+    else if (str === 'false')
+        return false;
+    else
+        return -1;
+}
+
+function getFormatTime() {
+    var date = new Date();
+    var month = date.getMonth() + 1;
+    month = month > 9 ? month : "0" + month;
+    var day = date.getDate();
+    day = day > 9 ? day : "0" + day;
+    var hour = date.getHours();
+    hour = hour > 9 ? hour : "0" + hour;
+    var min = date.getMinutes();
+    min = min > 9 ? min : "0" + min;
+    var sec = date.getSeconds();
+    sec = sec > 9 ? sec : "0" + sec;
+    return month + '-' + day + ' ' + hour + ':' + min + ':' + sec;
+}
+/*--------------------------------------------------------*/
+
+/*----------------------------与main通信的接收函数----------------------------*/
 // Network
 ipcRenderer.on('network', (e, msg) => {
     let type = msg.split('|')[0];
@@ -204,21 +246,53 @@ ipcRenderer.on('network', (e, msg) => {
     switch (type) {
         case 'login_bck':
             // alert("code:" + arg1 + " (0=登陆成功,else失败)");
-            if (arg1 === '0')
+            if (arg1 === '0') {
+                // if (arg2 === '0') {// arg2固定为0，用于测试
+                // console.log('hithere')
                 afterLogin();
+                isLogined = true;
+            }
             else if (arg1 === '-1')
                 login_failtime++;
             break;
-        case 'online_state':
-            if (arg1 === '-1') {
+        case 'online_check_bck':
+            // console.log('hit!!')
+            if (arg1 === '0') {
+                // console.log('hit1')
+                // seu未断
+                if (arg2 === '0') {
+                    // 网也没断
+                    // console.log(isLogined);
+                    if (!isLogined) {
+                        // 初次打开程序时isLogined为false，此时check，可能已联网，使程序进入登录态
+                        // 登录态isLogined为true，定时check，返回仍然联网，防止程序于登录态调用afterLogin()
+                        afterLogin();
+                    }
+                }
+                else if (arg2 === '-1') {
+                    // 但因某种原因已断网
+                    if (isLogined) {
+                        // 初次打开程序时isLogined为false，此时check，可能未联网，防止程序于注销态调用afterLogout()
+                        afterLogout();
+                        // 尝试重登
+                        console.log(getFormatTime() + ' | Try to relogin');
+                        ipcRenderer.send('network', 'login|' + Username + '|' + Password);
+                    } else {
+                        if (IfAutoLogin) {
+                            // 自动登录
+                            ipcRenderer.send('network', 'login|' + Username + '|' + Password);
+                        }
+                    }
+                } else {
+                    // nothing arrive
+                }
+            } else if (arg1 === '-1') {
+                // console.log('hit2')
                 // seu断了
                 afterLogout();
             }
             else {
-                if (arg2 === '-1') {
-                    // seu未断，但因某种原因无法登陆
-                    afterLogout();
-                }
+                // nothing arrive
             }
             break;
         case 'logout_bck':
@@ -240,11 +314,12 @@ ipcRenderer.on('action', (e, msg) => {
         case 'alert':
             alert(arg1);
             break;
-        case 'ver_bck':
-            document.getElementById('p_version').innerText = 'v' + arg1;
-
-            // 以下相当于初始化
+        case 'init':
             // 读取本地数据库
+            // 询问版本号
+            ipcRenderer.send('action', 'ver||');
+            // 检查在线状态
+            ipcRenderer.send('network', 'online_check||');
             // 账密
             let name = store.get('UserName', 'null');
             let key = store.get('Password', 'null');
@@ -257,33 +332,40 @@ ipcRenderer.on('action', (e, msg) => {
             let AS = store.get('AutoStart', 'null');
             let AL = store.get('AutoLogin', 'null');
             if (AS.toString() !== "null") {
-                IfAutoStart = AS.toString();
+                IfAutoStart = str2bool(AS.toString());
                 console.log('initAS ' + IfAutoStart);
                 switch_refresh("autoStart");
+                ipcRenderer.send('action', 'update|AS|' + IfAutoStart);
             }
             if (AL.toString() !== "null") {
-                IfAutoLogin = AL.toString();
-                console.log('initAL ' + IfAutoStart);
+                IfAutoLogin = str2bool(AL.toString());
+                console.log('initAL ' + IfAutoLogin);
                 switch_refresh("autoLogin");
+                ipcRenderer.send('action', 'update|AL|' + IfAutoLogin);
             }
+            // 告知初始化完成
+            ipcRenderer.send('action', 'init_bck||');
+            break;
+        case 'ver_bck':
+            document.getElementById('p_version').innerText = 'v' + arg1;
             break;
         // 一些变量改变刷新
         case 'update':
             switch (arg1) {
                 case 'AS':
-                    IfAutoStart = !IfAutoStart;
-                    console.log('AS' + IfAutoStart);
+                    IfAutoStart = str2bool(arg2);
+                    console.log('AS_fromMain:' + IfAutoStart);
                     switch_refresh('autoStart');
                     store.set('AutoStart', IfAutoStart);
                     break;
                 case 'AL':
-                    IfAutoLogin = !IfAutoLogin;
-                    console.log('AL' + IfAutoLogin);
+                    IfAutoLogin = str2bool(arg2);
+                    console.log('AL_fromMain:' + IfAutoLogin);
                     switch_refresh('autoLogin');
                     store.set('AutoLogin', IfAutoLogin);
                     break;
                 case 'IL':
-                    isLogined = !isLogined;
+                    isLogined = str2bool(arg2);
                     break;
                 case 'RT':
                     runningTime = arg2;
@@ -294,3 +376,4 @@ ipcRenderer.on('action', (e, msg) => {
         default:
     }
 });
+/*--------------------------------------------------------*/
