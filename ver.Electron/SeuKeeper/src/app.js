@@ -13,6 +13,7 @@ var IfAutoLogin = false;
 
 var login_failtime = 0;
 var isLogined = false;
+var isChecking = false;
 var runningTime = 0;
 
 var input_u = document.getElementById('input_username');
@@ -28,13 +29,14 @@ var p_time_m = document.getElementById('p_time_m');
 var p_time_s = document.getElementById('p_time_s');
 
 /*----------------------------定时函数----------------------------*/
-// 每5分钟若处于登录态，检查一次外网连接
+// 每10秒若处于登录态，且上一检查已返回，检查一次外网连接
 var online_check = setInterval(() => {
-    if (isLogined) {
+    if (isLogined && !isChecking) {
+        isChecking = true;
         console.log(getFormatTime() + ' | Online check');
         ipcRenderer.send('network', 'online_check||');
     }
-}, 300000);
+}, 10000);
 
 // 读秒啊
 var countingTime = setInterval(() => {
@@ -90,7 +92,7 @@ function login() {
 
 // “注销”按键点击事件
 function logout() {
-    ipcRenderer.send('network', 'logout||');
+    ipcRenderer.send('network', 'logout|' + Username + '|');
 }
 
 // 点击跳转关于页
@@ -248,21 +250,47 @@ ipcRenderer.on('network', (e, msg) => {
             // alert("code:" + arg1 + " (0=登陆成功,else失败)");
             if (arg1 === '0') {
                 // if (arg2 === '0') {// arg2固定为0，用于测试
-                // console.log('hithere')
-                afterLogin();
-                isLogined = true;
+                console.log(getFormatTime() + ' | login successfully');
+                if (!isLogined)
+                    afterLogin();
             }
-            else if (arg1 === '-1')
+            else if (arg1 === '-1') {
                 login_failtime++;
+                console.log(getFormatTime() + ' | login failed');
+                if (isLogined)
+                    afterLogout();
+            } else if (arg1 === '-2') {
+                // 已登录
+                if (!isLogined)
+                    afterLogin();
+            } else {
+                if (isLogined)
+                    afterLogout();
+            }
+            break;
+        case 'logout_bck':
+            // // 1.0.4测试暂用
+            // afterLogout();
+            if (arg1 === '0') {
+                // if (arg2 === '0') {// arg2固定为0，用于测试
+                console.log(getFormatTime() + ' | logout successfully');
+                if (isLogined)
+                    afterLogout();
+            }
+            else if (arg1 === '-1') {
+                // 注销失败
+                console.log(getFormatTime() + ' | logout failed');
+            }
             break;
         case 'online_check_bck':
             // console.log('hit!!')
+            isChecking = false;
             if (arg1 === '0') {
-                // console.log('hit1')
+                console.log('hit_seu on');
                 // seu未断
                 if (arg2 === '0') {
+                    console.log('hit_internet on');
                     // 网也没断
-                    // console.log(isLogined);
                     if (!isLogined) {
                         // 初次打开程序时isLogined为false，此时check，可能已联网，使程序进入登录态
                         // 登录态isLogined为true，定时check，返回仍然联网，防止程序于登录态调用afterLogin()
@@ -270,10 +298,11 @@ ipcRenderer.on('network', (e, msg) => {
                     }
                 }
                 else if (arg2 === '-1') {
+                    console.log('hit_internet off');
                     // 但因某种原因已断网
                     if (isLogined) {
-                        // 初次打开程序时isLogined为false，此时check，可能未联网，防止程序于注销态调用afterLogout()
-                        afterLogout();
+                        // // 初次打开程序时isLogined为false，此时check，可能未联网，防止程序于注销态调用afterLogout()
+                        // afterLogout();
                         // 尝试重登
                         console.log(getFormatTime() + ' | Try to relogin');
                         ipcRenderer.send('network', 'login|' + Username + '|' + Password);
@@ -287,16 +316,13 @@ ipcRenderer.on('network', (e, msg) => {
                     // nothing arrive
                 }
             } else if (arg1 === '-1') {
-                // console.log('hit2')
+                console.log('hit_seu off');
                 // seu断了
                 afterLogout();
             }
             else {
                 // nothing arrive
             }
-            break;
-        case 'logout_bck':
-            afterLogout();
             break;
         default:
     }

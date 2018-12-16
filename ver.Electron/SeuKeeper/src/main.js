@@ -18,7 +18,7 @@ let mainWindow = null;
 let appIcon = null;
 let iconMenu = null;
 
-const version = '1.0.4-alpha.2';
+const version = '1.0.4';
 
 var main_IfAutoStart = false;
 var main_IfAutoLogin = false;
@@ -143,6 +143,12 @@ app.on('activate', () => {
 function ifURLconnective(url) {
     return new Promise(function (resolve, reject) {
         let request = null;
+        var isRequestEnd = false;
+        setTimeout(() => {
+            if (!isRequestEnd) {
+                resolve('-1');
+            }
+        }, 3000);
         request = net.request({
             method: 'GET',
             url: url
@@ -150,14 +156,22 @@ function ifURLconnective(url) {
         request.on('response', (response) => {
             // console.log(response.statusCode);
             if (response.statusCode === 200) {
-                // console.log('get0')
+                // console.log('get0');
+                isRequestEnd = true;
                 resolve('0');
             }
-            else
-                resolve('-1');
+            else {
+                isRequestEnd = true;
+                resolve('-2');
+            }
+        });
+        request.on('error', (error) => {
+            isRequestEnd = true;
+            resolve('-1');
         });
         request.end();
         request = null;
+
     })
 }
 
@@ -171,7 +185,7 @@ function getCookie(username) {
         request.on('response', (response) => {
             cookie = response.headers['set-cookie'][1];
             cookie = cookie + "; think_language=zh-Hans-CN" + "; sunriseUsername=" + username;
-            console.log(cookie);
+            // console.log(cookie);
             resolve();
         });
         request.end();
@@ -207,19 +221,68 @@ function login(username, password) {
             // console.log('step1');
             response.on('data', (chunk) => {
                 // 此处的chunk是buffer，需要toString()
-                // console.log(chunk.toString());
+                console.log(chunk.toString());
                 if (chunk.toString().indexOf("\\u8ba4\\u8bc1\\u6210\\u529f") >= 0) {
                     resolve('0');
                 }
                 else if (chunk.toString().indexOf("\\u8ba4\\u8bc1\\u5931\\u8d25\\uff0c\\u8d26\\u6237\\u6d41\\u91cf\\u8d85\\u914d\\u989d\\u9501\\u5b9a") >= 0) {
                     resolve('-1');
                 }
-                else {
+                else if (chunk.toString().indexOf("\\u7528\\u6237\\u5df2\\u767b\\u5f55") >= 0) {
+                    // 已登录
                     resolve('-2');
+                } else {
+                    // 未知错误
+                    resolve('-3');
                 }
             });
         });
         request.end(up);
+    });
+}
+
+function logout(username, password) {
+    return new Promise(function (resolve, reject) {
+        let request = null;
+        // let up = "username=" + username + "&password=" + Base64.encode(password) + "&enablemacauth=0";
+        let options = {
+            method: 'POST',
+            url: SeuLogoutURL,
+            headers: {
+                "Accept": "application/json, text/javascript, */*; q=0.01",
+                "Accept-Encoding": "gzip, deflate",
+                "Accept-Language": "zh-Hans-CN, zh-Hans; q=0.8, en-US; q=0.5, en; q=0.3",
+                "Connection": "Keep-Alive",
+                "Content-Length": "0",
+                "Content-Type": "application/x-www-form-urlencoded",
+                "DNT": "1",
+                "Host": "w.seu.edu.cn",
+                "Origin": "http://w.seu.edu.cn/",
+                "Referer": "http://w.seu.edu.cn/",
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko Core/1.63.5478.400 QQBrowser/10.1.1550.400",
+                "X-Requested-With": "XMLHttpRequest",
+                "cookie": cookie
+            }
+        }
+        request = net.request(options);
+        request.on('response', (response) => {
+            // console.log('step1');
+            response.on('data', (chunk) => {
+                // 此处的chunk是buffer，需要toString()
+                console.log(chunk.toString());
+                if (chunk.toString().indexOf("\\u9000\\u51fa\\u6210\\u529f") >= 0) {
+                    resolve('0');
+                }
+                // else if (chunk.toString().indexOf("\\u8ba4\\u8bc1\\u5931\\u8d25\\uff0c\\u8d26\\u6237\\u6d41\\u91cf\\u8d85\\u914d\\u989d\\u9501\\u5b9a") >= 0) {
+                //     resolve('-1');
+                // }
+                else {
+                    resolve('-1');
+                }
+            });
+        });
+        request.end();
+        // request.end(up);
     });
 }
 
@@ -259,6 +322,23 @@ ipcMain.on('network', (e, msg) => {
                     });
             });
             break;
+        case 'logout':
+            // // 1.0.4测试暂用，暂时不实现真正注销
+            // e.sender.send('network', 'logout_bck|' + 0 + '|');
+            // 1.0.5实现注销
+            ifURLconnective(BingURL).then(function (data) {
+                if (data === '-1')
+                    e.sender.send('action', 'alert|' + "已断开Internet" + '|');
+                else
+                    getCookie(arg1).then(function (data) {
+                        // Logout
+                        return logout();
+                    }).then(function (data) {
+                        console.log("logout result: " + data);
+                        e.sender.send('network', 'logout_bck|' + data + '|' + 0);// 0为测试用
+                    });
+            });
+            break;
         case 'online_check':
             // console.log('hit1');
             ifURLconnective(SeuURL).then((data1) => {
@@ -288,10 +368,6 @@ ipcMain.on('network', (e, msg) => {
         //         e.sender.send('network', 'login_bck|1|' + data);
         //     });
         //     break;
-        case 'logout':
-            // 1.0.4测试暂用，暂时不实现真正注销
-            e.sender.send('network', 'logout_bck|' + 0 + '|');
-            break;
         default:
     }
 });
